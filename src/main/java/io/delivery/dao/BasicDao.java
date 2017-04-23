@@ -1,15 +1,16 @@
 package io.delivery.dao;
 
-import io.delivery.entity.Document;
 import org.hibernate.Session;
+
 import java.util.List;
+
 /**
  * Basic methods for DAO
  */
 public interface BasicDao<T> {
+
     /**
-     *
-     * @return current hibernate session
+     * @return current Hibernate session
      */
     Session getCurrentSession();
 
@@ -19,30 +20,26 @@ public interface BasicDao<T> {
     List<T> getList();
 
     /**
-     * Create entity
+     * Create entity at database
      * @param entity - current entity
      * @return created entity
      */
     T create(T entity);
 
     /**
-     * Update entity
-     * @param entity - current entity
-     * @return created entity
+     * @param entity - document for update
+     * @return entity
      */
     T update(T entity);
 
     /**
-     * delete entity
-     * @param entity - current entity
-     * @return deleted entity
-     */
-    T delete(T entity);
+     *
+     * */
+    T findById(long id);
 
     /**
-     * find by Id
-     * @param id - current id
-     * @return found entity
-     */
-    T findById(long id);
+     *
+     * */
+    T delete(T entity);
+
 }

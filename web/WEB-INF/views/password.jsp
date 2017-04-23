@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Password</title>
+    <title>Title</title>
 </head>
 <body>
-${password}: ${crypt}
+<h1>Password for user:</h1>
+<p>${crypt}</p>
 </body>
 </html>

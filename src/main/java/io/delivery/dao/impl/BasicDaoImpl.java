@@ -1,7 +1,6 @@
 package io.delivery.dao.impl;
 
 import io.delivery.dao.BasicDao;
-import io.delivery.entity.Document;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,29 +13,12 @@ import java.util.List;
 
 @Transactional
 public abstract class BasicDaoImpl<T> implements BasicDao<T> {
-    private Class<T> entityClass;
-
     @Autowired
     protected SessionFactory sessionFactory;
+    private Class<T> entityClass;
 
     public BasicDaoImpl(Class<T> entityClass) {
         this.entityClass = entityClass;
-    }
-
-    public Class<T> getEntityClass() {
-        return entityClass;
-    }
-
-    public void setEntityClass(Class<T> entityClass) {
-        this.entityClass = entityClass;
-    }
-
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
     }
 
     @Override
@@ -50,7 +32,6 @@ public abstract class BasicDaoImpl<T> implements BasicDao<T> {
         CriteriaQuery<T> criteriaQuery = builder.createQuery(entityClass);
         Root<T> root = criteriaQuery.from(entityClass);
         criteriaQuery.select(root);
-        //criteriaQuery.where(builder.equal())
         return sessionFactory.getCurrentSession().createQuery(criteriaQuery).list();
     }
 
@@ -61,14 +42,14 @@ public abstract class BasicDaoImpl<T> implements BasicDao<T> {
     }
 
     @Override
-    public T update(T entity) {
-        getCurrentSession().update(entity);
-        return entity;
+    public T findById(long id) {
+        return getCurrentSession().get(entityClass, id);
     }
 
     @Override
-    public T findById(long id) {
-        return getCurrentSession().get(entityClass, id);
+    public T update(T entity) {
+        getCurrentSession().update(entity);
+        return entity;
     }
 
     @Override
@@ -76,6 +57,4 @@ public abstract class BasicDaoImpl<T> implements BasicDao<T> {
         getCurrentSession().delete(entity);
         return entity;
     }
-
-
 }

@@ -1,50 +1,44 @@
 package io.delivery.service;
 
 import io.delivery.entity.Document;
+
 import java.util.List;
 
-/**
- *
- */
 public interface DocumentService {
     /**
-     * Receive all documents from DB
-     * @return list of documents
+     * Receive all documents from db
+     *
+     * @return document list
      */
     List<Document> getDocumentList();
 
     /**
-     * Find documents by name
+     * Find documents by name at database
+     *
      * @param name - value name of document
-     * @return the exact document
+     * @return document
      */
     List<Document> findByName(String name);
 
     /**
-     * Create document
-     * @param document - current document
-     * @return created entity
+     * Create document at database
+     *
+     * @param document - current document for creation
+     * @return created document
      */
     Document create(Document document);
 
     /**
-     * Update document
-     * @param document - current document
-     * @return updated entity
+     * @param document - document for update
+     * @return document
      */
-    Document update(Document document);
+    Document updateDocument(Document document);
 
     /**
-     * delete document bu its Id
-     * @param id - current id
-     * @return deleted entity
+     * @param id = document id
+     * @return deleted document
      */
-    Document delete(long id);
+    Document deleteDocument(long id);
 
-    /**
-     * find document by its Id
-     * @param id - current id
-     * @return found document
-     */
-    public Document findById(long id) ;
+    Document findById(long id);
 }

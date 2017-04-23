@@ -1,6 +1,5 @@
 package io.delivery.service.impl;
 
-import io.delivery.dao.BasicDao;
 import io.delivery.dao.DocumentDao;
 import io.delivery.entity.Document;
 import io.delivery.service.DocumentService;
@@ -9,9 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by NortT on 15.04.2017.
- */
 @Service("documentService")
 public class DocumentServiceImpl implements DocumentService {
     @Autowired
@@ -28,17 +24,7 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     @Override
-    public Document create(Document document) {
-        return documentDao.create(document);
-    }
-
-    @Override
-    public Document update(Document document) {
-        return documentDao.update(document);
-    }
-
-    @Override
-    public Document delete(long id) {
+    public Document deleteDocument(long id) {
         return documentDao.delete(findById(id));
     }
 
@@ -47,5 +33,13 @@ public class DocumentServiceImpl implements DocumentService {
         return documentDao.findById(id);
     }
 
+    @Override
+    public Document updateDocument(Document document) {
+        return documentDao.update(document);
+    }
 
+    @Override
+    public Document create(Document document) {
+        return documentDao.create(document);
+    }
 }

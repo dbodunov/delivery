@@ -11,11 +11,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"io.delivery.controller",
-        "io.delivery.config",
-        "io.delivery.model",
-        "io.delivery.dao",
-        "io.delivery.service"})
+@ComponentScan({"io.delivery.controller", "io.delivery.config", "io.delivery.model", "io.delivery.service", "io.delivery.dao"})
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public InternalResourceViewResolver viewResolver() {
@@ -31,7 +27,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/css/");
         registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/js/");
-        registry.addResourceHandler("/fonts/**").addResourceLocations("/WEB-INF/views/fonts/");
         registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/images/");
+        registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/views/resources/");
+        registry.addResourceHandler("/fonts/**").addResourceLocations("/WEB-INF/views/fonts/");
     }
 }
